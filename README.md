@@ -13,9 +13,9 @@ How to run:
 -------
 - Prepare your environment for React native
 - Clone this repo, and goto the project root directory
-- open `Config.js`, change `API_KEY` to your own key of http://api.huceo.com/
-- run npm install
-- run react-native run-ios
+- open `Config.js`, change `APIKEY` to your own key of http://api.huceo.com/
+- run `npm install`
+- run `react-native run-ios` or build SkyWalker.xcodeproj with Xcode
 - Enjoy
 
 TODO:
