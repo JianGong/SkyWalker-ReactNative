@@ -9,13 +9,13 @@ var WechatPosterDetail = React.createClass({
   render: function() {
     return (
       <WebView
-  automaticallyAdjustContentInsets={true}
-  source={{uri: this.props.url}}
-  javaScriptEnabled={true}
-  domStorageEnabled={true}
-  decelerationRate="normal"
-  startInLoadingState={true}
-  />
+        automaticallyAdjustContentInsets={true}
+        source={{uri: this.props.url}}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        decelerationRate="normal"
+        startInLoadingState={true}
+      />
     );
   },
 });

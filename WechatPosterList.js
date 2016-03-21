@@ -38,10 +38,14 @@ var WechatPosterList = React.createClass({
     fetch(url)
       .then((response) => response.json())
       .then((responseData) => {
-        if (this.page == 1) {
-          this.newslist = ds.cloneWithRows(responseData.newslist);
+        if (!responseData || !responseData.newslist) {
+          this.newslist = ds.cloneWithRows([])
         } else {
-          this.newslist = this.newslist.cloneWithRows(responseData.newslist);
+          if (this.page == 1) {
+            this.newslist = ds.cloneWithRows(responseData.newslist);
+          } else {
+            this.newslist = this.newslist.cloneWithRows(responseData.newslist);
+          }
         }
         this.setState({
           dataSource: this.newslist,
@@ -50,19 +54,19 @@ var WechatPosterList = React.createClass({
       .done();
   },
   onRefresh() {
-        this.page = 1;
-        this.fetchPosters(this.page);
-        this.setTimeout(()=>{
-            this.list.hideHeader();
-        }, 1000);
-    },
+    this.page = 1;
+    this.fetchPosters(this.page);
+    this.setTimeout(()=>{
+        this.list.hideHeader();
+    }, 1000);
+  },
   onInfinite() {
-        this.page = this.page + 1;
-        this.fetchPosters(this.page);
-        this.setTimeout(()=>{
-            this.list.hideFooter();
-        }, 1000);
-    },
+    this.page = this.page + 1;
+    this.fetchPosters(this.page);
+    this.setTimeout(()=>{
+        this.list.hideFooter();
+    }, 1000);
+  },
   loadedAllData() {
     return false;
   },
@@ -82,17 +86,16 @@ var WechatPosterList = React.createClass({
   render: function() {
     return (
       <RefreshInfiniteListView
-      ref = {(list) => {this.list=list}}
-      dataSource={this.state.dataSource}
-      renderRow={this._renderRow}
-      renderEmptyRow={this._renderEmptyRow}
-      initialListSize={20}
-      scrollEventThrottle={10}
-      style={{backgroundColor:'transparent'}}
-      onRefresh = {this.onRefresh}
-      onInfinite = {this.onInfinite}
-        >
-      </RefreshInfiniteListView>
+        ref = {(list) => {this.list=list}}
+        dataSource={this.state.dataSource}
+        renderRow={this._renderRow}
+        renderEmptyRow={this._renderEmptyRow}
+        initialListSize={20}
+        scrollEventThrottle={10}
+        style={{backgroundColor:'transparent'}}
+        onRefresh = {this.onRefresh}
+        onInfinite = {this.onInfinite}
+      />
     );
   },
   _renderRow: function(news) {
