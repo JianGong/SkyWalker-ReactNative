@@ -3,7 +3,7 @@ SkyWalker App - Made with React Native
 
 Features:
 -------
-- 微信文章精选，数据来源于http://api.huceo.com/
+- 微信文章精选，数据来源于http://api.huceo.com/ ,目前仅支持iOS，Android的支持仍在开发中
 
 Technology:
 -----------
